@@ -6,32 +6,23 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 
-import App from "./App.jsx";
-import AuthLayout from "./layouts/AuthLayout.jsx";
-import Education from "./pages/education/index.jsx";
-import NotFound from "./pages/404.jsx";
+import GlobalLayout from "./layouts/GlobalLayout.jsx";
+import NotFound from './pages/404.jsx';
+
+import unformattedRoutes from '~react-pages'
 
 import "./index.css";
 
-const router = createBrowserRouter([
+export const routes = [
   {
-    path: "/",
-    element: <App />,
+    path: '/',
+    element: <GlobalLayout />,
     ErrorBoundary: NotFound,
-  },
-  {
-    path: "/education",
-    element: <AuthLayout />,
-    ErrorBoundary: NotFound,
-    children: [
-      {
-        path: "/education",
-        element: <Education />,
-        index: true,
-      },
-    ],
-  },
-]);
+    children: unformattedRoutes,
+  }
+]
+
+const router = createBrowserRouter(routes);
 
 const queryClient = new QueryClient();
 
