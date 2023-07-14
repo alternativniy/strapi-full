@@ -1,5 +1,5 @@
 module.exports = ({ env }) => ({
-  url: 'http://0.0.0.0:1337/admin/',
+  url: `${env('PUBLIC_URL')}/admin/`,
   serveAdminPanel: env('NODE_ENV') !== 'production',
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
