@@ -1,0 +1,30 @@
+{
+  "name": "strapi-full-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "NODE_ENV=production strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/strapi": "4.11.4",
+    "@strapi/plugin-users-permissions": "4.11.4",
+    "@strapi/plugin-i18n": "4.11.4",
+    "better-sqlite3": "8.0.1"
+  },
+  "author": {
+    "name": "Alternativ"
+  },
+  "strapi": {
+    "uuid": "ebb0d17a-e51e-49a7-b317-f172b592254f"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
