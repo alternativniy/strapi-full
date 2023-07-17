@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { Outlet } from 'react-router';
 
 import { authorize } from '../api/auth';
+import { getUserToken } from '../helpers/auth';
 
 export default function AuthLayout() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [success, setSuccess] = useState(!!localStorage.getItem('USER_JWT'));
+  const [success, setSuccess] = useState(!!getUserToken());
 
   const handleLogin = async () => {
     if(login.length > 0 && password.length > 0) {
@@ -31,7 +32,9 @@ export default function AuthLayout() {
       }
       {success &&
         <div>
-          <Outlet />
+          <Suspense fallback={<>Loading...</>}>
+            <Outlet />
+          </Suspense>
         </div>
       }
     </>

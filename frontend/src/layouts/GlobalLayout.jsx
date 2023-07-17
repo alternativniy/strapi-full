@@ -5,6 +5,8 @@ import AuthLayout from './AuthLayout';
 
 import useRoute from '../hooks/useRoute';
 
+import "../index.css";
+
 export default function GlobalLayout() {
   const route = useRoute();
 

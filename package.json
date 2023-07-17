@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -r \"cd backend && npm run develop\" \"cd frontend && npm run dev\"",
-    "build": "rm -r ./dist && mkdir ./dist && concurrently -r \"cd backend && npm run build && mv ./build ../dist/admin\" \"cd frontend && npm run build -- --outDir=../dist\"",
+    "build": "rm -rf ./dist && mkdir ./dist && concurrently -r \"cd backend && npm run build && mv ./build ../dist/admin\" \"cd frontend && npm run build -- --outDir=../dist\" \"cd frontend && npm run build:server &> /dev/null\" && cd frontend && node prerender ../dist",
+    "start": "node server",
     "setup": "concurrently -r \"cd backend && npm i\" \"cd frontend && npm i\""
   },
   "dependencies": {

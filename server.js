@@ -2,6 +2,7 @@ import strapi from './backend/node_modules/@strapi/strapi/lib/index.js';
 import dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
+import { existsSync } from 'fs';
 
 import { fileURLToPath } from 'url';
 
@@ -20,12 +21,21 @@ const port = 80;
 app.listen(port);
 app.use(express.static('./dist'));
 
-app.use('/*', (req, res) => {
+app.use('*', (req, res) => {
+  
   if(req.url.includes('/admin')) {
     res.sendFile(path.join(__dirname, '/dist/admin/index.html'));
+
+    return;
+  }
+  
+  if(existsSync(path.join(__dirname, `/dist${req.originalUrl}.html`))) {
+    res.sendFile(path.join(__dirname, `/dist${req.originalUrl}.html`))
+
+    return;
   }
 
-  res.sendFile(path.join(__dirname, '/dist/index.html'));
+  res.sendFile(path.join(__dirname, '/dist/template.html'));
 })
 
 console.log(`Production server started at port ${port}`);
